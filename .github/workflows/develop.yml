@@ -34,14 +34,3 @@ jobs:
           file: ./java/dockerfile
           push: true
           tags: develop-back:latest
-
-      # Using docker-compose to build front + back
-      # - name: Build and push images with docker-compose
-      #       uses: docker/compose@v2
-      #       with:
-      #         file: docker-compose.yml
-      #         services: front back
-      #         action: push
-      #         push-registry: ghcr.io
-      #         tags: develop:latest
-      #
