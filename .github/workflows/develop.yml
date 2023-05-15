@@ -17,7 +17,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: ./angular
-          dockerfile: ./front/dockerfile
+          file: ./front/dockerfile
           push: true
           tags: develop-front:latest
 
@@ -25,10 +25,10 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: ./java
-          dockerfile: ./java/dockerfile
+          file: ./java/dockerfile
           push: true
           tags: develop-back:latest
-      #
+
       # Using docker-compose to build front + back
       # - name: Build and push images with docker-compose
       #       uses: docker/compose@v2

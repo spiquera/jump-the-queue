@@ -4,7 +4,7 @@ services:
     image: fe-jtq
     build:
       context: angular/
-      dockerfile: Dockerfile
+      dockerfile: dockerfile
     ports:
       - 8080:80
     volumes:
@@ -15,7 +15,7 @@ services:
     image: be-jtq
     build:
       context: java/
-      dockerfile: Dockerfile
+      dockerfile: dockerfile
     ports:
       - 8081:8081
     volumes:
