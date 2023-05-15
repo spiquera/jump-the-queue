@@ -1,0 +1,24 @@
+# Building stage
+FROM node:18.16.0 as node
+
+WORKDIR /app
+
+COPY package.json package.json
+COPY yarn.lock yarn.lock
+
+RUN yarn install
+
+COPY . .
+
+RUN yarn run build
+
+
+# Ngnix stage (levantar app en el servidor web estatico)
+FROM nginx:alpine
+
+COPY --from=node /app/dist/angular /usr/share/nginx/html
+#COPY nginx-custom.conf /etc/nginx/nginx.conf (force nginx with a .conf file to use another a port, default 80)
+
+EXPOSE 80
+# docker build -t jtq -f dockerfile .
+# docker run -d -p 8080:80 --name jtq jtq  (--name <contenedor> <imagen>)

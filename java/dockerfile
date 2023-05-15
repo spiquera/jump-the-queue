@@ -1,0 +1,27 @@
+#build stage - compiled to an executable .war
+FROM docker.io/maven:3.9.1-eclipse-temurin-11 as build
+
+WORKDIR /app
+
+# COPY jtqj/pom.xml pom.xml
+
+# RUN mvn dependency:go-offline
+
+COPY jtqj .
+
+RUN mvn clean install -Dmaven.test.skip=true
+
+
+#runtime environment stage -copy only what is needed
+FROM docker.io/eclipse-temurin:11-jdk-alpine
+
+COPY --from=build /app/server/target/ .
+
+ENTRYPOINT ["java", "-jar", "jtqj-server-bootified.war"]
+
+EXPOSE 8081
+
+
+#docker build -t be-jtq -f dockerfile .
+#docker run -d -p 8081:8081 --name java be-jtq (--name <contenedor> <imagen>)
+
