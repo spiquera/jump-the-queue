@@ -22,3 +22,4 @@ COPY --from=node /app/dist/angular /usr/share/nginx/html
 EXPOSE 80
 # docker build -t jtq -f dockerfile .
 # docker run -d -p 8080:80 --name jtq jtq  (--name <contenedor> <imagen>)
+#
