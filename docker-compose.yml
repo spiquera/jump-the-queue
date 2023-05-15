@@ -1,10 +1,10 @@
 version: "3.8"
 services:
   front:
-    image: jtq
+    image: fe-jtq
     build:
       context: angular/
-      dockerfile: dockerfile
+      dockerfile: Dockerfile
     ports:
       - 8080:80
     volumes:
@@ -15,7 +15,7 @@ services:
     image: be-jtq
     build:
       context: java/
-      dockerfile: dockerfile
+      dockerfile: Dockerfile
     ports:
       - 8081:8081
     volumes:
@@ -23,8 +23,8 @@ services:
     networks:
       - network1
 volumes:
-  front_end:
-  back_end:
+  front-end:
+  back-end:
 networks:
   network1:
     driver: bridge

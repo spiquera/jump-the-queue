@@ -20,5 +20,5 @@ COPY --from=node /app/dist/angular /usr/share/nginx/html
 #COPY nginx-custom.conf /etc/nginx/nginx.conf (force nginx with a .conf file to use another a port, default 80)
 
 EXPOSE 80
-# docker build -t jtq -f dockerfile .
-# docker run -d -p 8080:80 --name jtq jtq  (--name <contenedor> <imagen>)
+# docker build -t fe-jtq -f dockerfile .
+# docker run -d -p 8080:80 --name angular fe-jtq  (--name <contenedor> <imagen>)

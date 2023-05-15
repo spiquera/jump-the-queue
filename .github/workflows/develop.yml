@@ -1,0 +1,40 @@
+name: 2. Develop Change (create docker images, push to github)
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  build-and-push-docker:
+    name: Build and Push Docker Images
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Build and push front image
+        uses: docker/build-push-action@v3
+        with:
+          context: ./angular
+          dockerfile: ./front/Dockerfile
+          push: true
+          tags: develop-front:latest
+
+      - name: Build and push back image
+        uses: docker/build-push-action@v3
+        with:
+          context: ./java
+          dockerfile: ./java/Dockerfile
+          push: true
+          tags: develop-back:latest
+
+      # Using docker-compose to build front + back
+      # - name: Build and push images with docker-compose
+      #       uses: docker/compose@v2
+      #       with:
+      #         file: docker-compose.yml
+      #         services: front back
+      #         action: push
+      #         push-registry: ghcr.io
+      #         tags: develop:latest
