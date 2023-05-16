@@ -29,9 +29,10 @@ jobs:
           yarn test --watch=false --code-coverage
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
+        with:
+          projectBaseDir: angular/.
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        working-directory: ./angular
 
   # build:
   #   runs-on: ubuntu-latest
