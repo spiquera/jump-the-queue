@@ -1,8 +1,8 @@
-name: 2. Develop Change (create docker images, push to github)
+name: Docker build
 on:
   push:
     branches:
-      - develop
+      - master
 
 jobs:
   build-and-push-docker:
@@ -11,7 +11,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      
+
       - name: Docker Login
         uses: docker/login-action@v2.1.0
         with:
