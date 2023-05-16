@@ -4,6 +4,9 @@ on:
   pull_request:
     branches: ["master"]
 
+permissions:
+  pull-requests: read
+
 jobs:
   angular:
     runs-on: ubuntu-latest
