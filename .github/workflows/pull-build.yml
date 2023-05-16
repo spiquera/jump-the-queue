@@ -31,6 +31,8 @@ jobs:
         uses: SonarSource/sonarcloud-github-action@master
         with:
           projectBaseDir: angular/.
+          args: -Dsonar.projectKey=spiquera_jump-the-queue
+            -Dsonar.organization=spiquera
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
