@@ -1,4 +1,4 @@
-name: Pull-request 
+name: Pull-request
 
 on:
   pull_request:
@@ -36,31 +36,32 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
   java:
-    needs: angular
     runs-on: ubuntu-latest
+    steps:
       - name: Checkout code
         uses: actions/checkout@v2
         with:
           submodules: recursive
       - name: Set up JDK
-        working-directory: ./java
         uses: actions/setup-java@v1
         with:
           java-version: "11"
       - name: Build project with Maven
+        working-directory: ./java/jtqj
         run: |
-          cd java/jtqj
           mvn install
+      - name: Test back
+        working-directory: ./java/jtqj
+        run: |
+          mvn test
       - name: SonarCloud Scan Back
         uses: SonarSource/sonarcloud-github-action@master
         with:
           projectBaseDir: java/.
           args: -Dsonar.projectKey=spiquera_jump-the-queue
             -Dsonar.organization=spiquera
-            -Dsonar.sources=.
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-
 
   # build:
   #   runs-on: ubuntu-latest
