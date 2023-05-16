@@ -10,22 +10,24 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: Checkout angular folder
-        run: |
-          cd angular
       - name: Install dependencies
+        working-directory: ./angular
         run: |
           yarn install
       - name: Compile application
+        working-directory: ./angular
         run: |
           yarn build
       - name: Execute linter
+        working-directory: ./angular
         run: |
           yarn lint
       - name: Execute tests
+        working-directory: ./angular
         run: |
           yarn test --watch=false --code-coverage
       - name: SonarCloud Scan
+        working-directory: ./angular
         uses: SonarSource/sonarcloud-github-action@master
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
