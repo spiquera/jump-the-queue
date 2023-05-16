@@ -12,13 +12,20 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Docker Login
+        uses: docker/login-action@v2.1.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Build and push front image
         uses: docker/build-push-action@v3
         with:
           context: ./angular
           file: ./angular/dockerfile
           push: true
-          tags: develop-front:latest
+          tags: ghcr.io/spiquera/jump-the-queue:front-end
 
       - name: Build and push back image
         uses: docker/build-push-action@v3
@@ -26,15 +33,4 @@ jobs:
           context: ./java
           file: ./java/dockerfile
           push: true
-          tags: develop-back:latest
-
-      # Using docker-compose to build front + back
-      # - name: Build and push images with docker-compose
-      #       uses: docker/compose@v2
-      #       with:
-      #         file: docker-compose.yml
-      #         services: front back
-      #         action: push
-      #         push-registry: ghcr.io
-      #         tags: develop:latest
-      #
+          tags: ghcr.io/spiquera/jump-the-queue:back-end

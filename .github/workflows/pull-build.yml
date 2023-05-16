@@ -14,7 +14,7 @@ jobs:
         run: |
           cd angular
           yarn install
-          npm run build
+          yarn build
 
       - name: Checkout code
         uses: actions/checkout@v2
@@ -29,23 +29,16 @@ jobs:
           cd java/jtqj
           mvn install
 
+  #usar lint custom (yarn lint)
   lint:
     needs: build
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
-        with:
-          # Full git history is needed to get a proper list of changed files within `super-linter`
-          fetch-depth: 0
+        uses: actions/checkout@v2
+      - name: Run lint
+        run: yarn lint
 
-      - name: Lint Code Base
-        uses: github/super-linter@v4
-        env:
-          VALIDATE_ALL_CODEBASE: false
-          DEFAULT_BRANCH: "master"
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-  # test:
+  # test: igual que el lint run test
   #   needs: build
 
   Sonarcloud:
