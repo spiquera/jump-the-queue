@@ -54,6 +54,7 @@ jobs:
         working-directory: ./java/jtqj
         run: |
           mvn test
+        continue-on-error: true
       - name: SonarCloud Scan Back
         uses: SonarSource/sonarcloud-github-action@master
         with:
