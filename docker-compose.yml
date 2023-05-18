@@ -1,3 +1,4 @@
+#Levanta contenedores front y back a la vez (build image + run container)
 version: "3.8"
 services:
   front:
