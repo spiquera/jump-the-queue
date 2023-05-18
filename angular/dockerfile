@@ -1,5 +1,5 @@
 # Building stage
-#Use CAPS with reserved words (FROM,AS;COPY...)
+#Use CAPS with reserved words (FROM,AS,COPY,RUN...)
 FROM node:18.16.0 AS node
 
 WORKDIR /app
