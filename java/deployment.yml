@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: jtq
-  namespace:
+  name: jtq-be
+  namespace: jtq
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: jtq
+      app: jump-the-queue
   template:
     metadata:
       labels:
-        app: jtq
+        app: jump-the-queue
     spec:
       containers:
         - name: back-end
-          image: be-jtq:latest
+          image: ghcr.io/spiquera/jump-the-queue:back-end
           ports:
             - containerPort: 8081

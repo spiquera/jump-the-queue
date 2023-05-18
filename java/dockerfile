@@ -1,5 +1,5 @@
 #build stage - compiled to an executable .war
-FROM docker.io/maven:3.9.1-eclipse-temurin-11 as build
+FROM docker.io/maven:3.9.1-eclipse-temurin-11 AS build
 
 WORKDIR /app
 

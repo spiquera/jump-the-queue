@@ -32,7 +32,7 @@ jobs:
           context: ./angular
           file: ./angular/dockerfile
           push: true
-          tags: ghcr.io/spiquera/jump-the-queue:front-end
+          tags: ghcr.io/spiquera/jump-the-queue/frontend:latest
 
       - name: Build and push back image
         uses: docker/build-push-action@v3
@@ -40,4 +40,4 @@ jobs:
           context: ./java
           file: ./java/dockerfile
           push: true
-          tags: ghcr.io/spiquera/jump-the-queue:back-end
+          tags: ghcr.io/spiquera/jump-the-queue/backend:latest

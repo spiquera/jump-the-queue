@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: test-deployment
+  name: jtq-deployment
   namespace: jtq
 spec:
   replicas: 1
@@ -14,7 +14,14 @@ spec:
         app: test
     spec:
       containers:
-        - name: container1
+        - name: container2
           image: nginx:latest
+          resources:
+            limits:
+              cpu: "1"
+              memory: "512Mi"
+            requests:
+              cpu: "0.5"
+              memory: "256Mi"
           ports:
-            - containerPort: 80
+            - containerPort: 9000
