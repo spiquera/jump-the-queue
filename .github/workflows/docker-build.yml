@@ -3,8 +3,9 @@ on:
   push:
     branches:
       - develop
-    paths: - 'angular/**'
-      - 'java/**'
+    paths:
+      - "angular/**"
+      - "java/**"
 
 jobs:
   build-and-push-docker:
