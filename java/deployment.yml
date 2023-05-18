@@ -15,6 +15,6 @@ spec:
     spec:
       containers:
         - name: back-end
-          image: ghcr.io/spiquera/jump-the-queue:back-end
+          image: ghcr.io/spiquera/jump-the-queue/backend:latest
           ports:
             - containerPort: 8081
