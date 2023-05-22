@@ -41,7 +41,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
   java:
     runs-on: ubuntu-latest
-    if: if: ${{ startsWith(github.event.pull_request.changed_files, 'java/') }}
+    if: ${{ startsWith(github.event.pull_request.changed_files, 'java/') }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
