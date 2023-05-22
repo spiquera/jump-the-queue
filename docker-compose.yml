@@ -1,4 +1,4 @@
-#Levanta contenedores front y back a la vez (build image + run container)
+#Levanta contenedores front y back a la vez (build image + run) por volumenes
 version: "3.8"
 services:
   front:
