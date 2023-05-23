@@ -18,7 +18,11 @@ jobs:
       - uses: dorny/paths-filter@v2
         id: filter
         with:
-          filters: '{ frontend: [ "angular/**" ], backend: [ "java/**" ] }'
+          filters: |
+            frontend:
+              - 'angular/**'
+            backend:
+              - 'java/**'
 
   angular:
     runs-on: ubuntu-latest
