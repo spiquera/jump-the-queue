@@ -1,4 +1,5 @@
 # Pipeline para build-lint-test-SonarCloud cuando haya una PR a master (test opening a PR from develop to master)
+#paths-filter para ejecutar determinados jobs si hay cambios en la carpeta de front y/o back
 
 name: Pull-request
 
