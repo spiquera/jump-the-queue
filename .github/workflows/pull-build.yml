@@ -26,7 +26,7 @@ jobs:
 
   angular:
     runs-on: ubuntu-latest
-    if: ${{ needs.filter.outputs.frontend == 'true' }}
+    if: needs.filter.outputs.frontend == 'true'
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -57,7 +57,7 @@ jobs:
 
   java:
     runs-on: ubuntu-latest
-    if: ${{ needs.filter.outputs.backend == 'true' }}
+    if: needs.filter.outputs.backend == 'true'
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
