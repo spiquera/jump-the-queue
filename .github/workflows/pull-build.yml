@@ -6,9 +6,6 @@ on:
   pull_request:
     types: [opened, synchronize]
     branches: ["master"]
-    paths:
-      - "angular/**"
-      - "java/**"
 
 jobs:
   filter:
