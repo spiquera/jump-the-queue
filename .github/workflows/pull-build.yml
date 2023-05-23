@@ -1,5 +1,4 @@
 # Pipeline para build-lint-test-SonarCloud cuando haya una PR a master (test opening a PR from develop to master)
-#
 
 name: Pull-request
 
