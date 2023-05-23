@@ -8,9 +8,11 @@ on:
     branches: ["master"]
 
 jobs:
-  filter:
-    name: Detect Changes on frontend/backend
+  changes:
+    name: Detect Changes on folder frontend/backend
     runs-on: ubuntu-latest
+    permissions:
+      pull-requests: read
     outputs:
       frontend: ${{ steps.filter.outputs.frontend }}
       backend: ${{ steps.filter.outputs.backend }}
@@ -26,7 +28,8 @@ jobs:
 
   angular:
     runs-on: ubuntu-latest
-    if: needs.filter.outputs.frontend == 'true'
+    needs: changes
+    if: ${{ needs.changes.outputs.frontend == 'true' }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -57,7 +60,8 @@ jobs:
 
   java:
     runs-on: ubuntu-latest
-    if: needs.filter.outputs.backend == 'true'
+    needs: changes
+    if: ${{ needs.changes.outputs.backend == 'true' }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v2

@@ -1,6 +1,5 @@
 #build stage - compiled to an executable .war
 #Use CAPS with reserved words (FROM,AS,COPY,RUN...)
-#Changes on java folder
 
 FROM docker.io/maven:3.9.1-eclipse-temurin-11 AS build
 

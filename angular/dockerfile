@@ -1,7 +1,6 @@
 #Front-end Dockerfile JTQ
 # Building stage
 #Use CAPS with reserved words (FROM,AS,COPY,RUN...)
-#Changes on angular
 
 FROM node:18.16.0 AS node
 
