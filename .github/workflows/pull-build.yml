@@ -15,11 +15,13 @@ jobs:
       frontend: ${{ steps.filter.outputs.frontend }}
       backend: ${{ steps.filter.outputs.backend }}
     steps:
-      - uses: actions/checkout@v2
       - uses: dorny/paths-filter@v2
         id: filter
         with:
-          filters: '{ frontend: [ "angular/**" ], backend: [ "java/**" ] }'
+          filters: |
+          frontend:
+            - "angular/**"
+          backend: -"java/**"
 
   angular:
     runs-on: ubuntu-latest
