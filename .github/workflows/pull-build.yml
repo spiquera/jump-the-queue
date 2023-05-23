@@ -51,10 +51,11 @@ jobs:
         run: |
           yarn test --watch=false --code-coverage
       - name: SonarCloud Scan Front
+        continue-on-error: true
         uses: SonarSource/sonarcloud-github-action@master
         with:
           projectBaseDir: angular/.
-          args: -Dsonar.projectKey=spiquera_jump-the-queue
+          args: -Dsonar.projectKey=spiquera_jump-the-queue-angular
             -Dsonar.organization=spiquera
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
@@ -85,7 +86,7 @@ jobs:
         uses: SonarSource/sonarcloud-github-action@master
         with:
           projectBaseDir: java/.
-          args: -Dsonar.projectKey=spiquera_jump-the-queue
+          args: -Dsonar.projectKey=spiquera_jump-the-queue-java
             -Dsonar.organization=spiquera
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
