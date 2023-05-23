@@ -1,5 +1,7 @@
 # Pipeline para build-lint-test-SonarCloud cuando haya una PR a master (test opening a PR from develop to master)
+
 name: Pull-request
+
 on:
   pull_request:
     types: [opened, synchronize]
@@ -9,7 +11,7 @@ on:
       - "java/**"
 
 jobs:
-filter:
+  filter:
     name: Detect Changes on frontend/backend
     runs-on: ubuntu-latest
     outputs:
@@ -21,6 +23,7 @@ filter:
         id: filter
         with:
           filters: '{ frontend: [ "angular/**" ], backend: [ "java/**" ] }'
+
   angular:
     runs-on: ubuntu-latest
     if: ${{ needs.filter.outputs.frontend == 'true' }}
@@ -51,6 +54,7 @@ filter:
             -Dsonar.organization=spiquera
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
   java:
     runs-on: ubuntu-latest
     if: ${{ needs.filter.outputs.backend == 'true' }}
