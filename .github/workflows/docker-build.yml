@@ -1,0 +1,44 @@
+# Pipeline para buildear imagenes de docker y pushearlas a repo cuando hay un push en la rama determinada (test with develop, change to master)
+# 1 solo job(agent) que: haga login con github token, build and push front, build and push back.
+# Resultado: se suben packages con las dos imagenes (fe, be) y son accesibles everywhere mediante la ruta ghcr.io/spiquera/jump-the-queue/*:latest
+# UPGRADE: solo se dispara la pipe si las carpetas de angular/ o java/ han sufrido cambios (usando el paths + directorios)
+
+name: Docker build
+on:
+  push:
+    branches:
+      - develop
+    paths:
+      - "angular/**"
+      - "java/**"
+
+jobs:
+  build-and-push-docker:
+    name: Build and Push Docker Images
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Docker Login
+        uses: docker/login-action@v2.1.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push front image
+        uses: docker/build-push-action@v3
+        with:
+          context: ./angular
+          file: ./angular/dockerfile
+          push: true
+          tags: ghcr.io/spiquera/jump-the-queue/frontend:latest
+
+      - name: Build and push back image
+        uses: docker/build-push-action@v3
+        with:
+          context: ./java
+          file: ./java/dockerfile
+          push: true
+          tags: ghcr.io/spiquera/jump-the-queue/backend:latest

@@ -1,0 +1,31 @@
+#Levanta contenedores front y back a la vez (build image + run) por volumenes
+version: "3.8"
+services:
+  front:
+    image: fe-jtq
+    build:
+      context: angular/
+      dockerfile: dockerfile
+    ports:
+      - 8080:80
+    volumes:
+      - front_end:/app/angular
+    networks:
+      - network1
+  back:
+    image: be-jtq
+    build:
+      context: java/
+      dockerfile: dockerfile
+    ports:
+      - 8081:8081
+    volumes:
+      - back_end:/app/java/jtqj
+    networks:
+      - network1
+volumes:
+  front-end:
+  back-end:
+networks:
+  network1:
+    driver: bridge
